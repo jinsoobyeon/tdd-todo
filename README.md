@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+# TDD Todo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 스택
 
-## Available Scripts
+- React: 18.0.0
+- Typescript: 4.4.2
 
-In the project directory, you can run:
+## 요구사항 확인
 
-### `yarn start`
+- 인풋에서 할 일을 입력하면 할 일이 저장된다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 인풋 밑에 입력순서 오름차순으로 할 일 리스트가 렌더링 된다.
+- 인풋 창의 화살표 버튼을 누르면 모든 할 일이 완료 상태로 변한다.
+- 모든 할 일이 완료 상태일 때 인풋 창의 화살표 버튼을 누르면 모든 할 일이 진행 상태로 변한다.
+- 할 일 아이템의 동그라미 버튼을 누르면 해당 할 일이 완료 상태로 변한다.
+- 완료 상태인 할 일 아이템의 체크된 동그라미 버튼을 누르면 해당 할 일이 진행 상태로 변한다.
+- 진행 상태인 할 일의 개수가 렌더링 된다.
+- All 버튼을 누르면 모든 할 일이 렌더링 된다.
+- Active 버튼을 누르면 진행 상태인 할 일이 렌더링 된다.
+- Completed 버튼을 누르면 완료 상태인 할 일이 렌더링 된다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 할 일 아이템을 더블 클릭하면 해당 할 일이 인풋 창으로 변한다.
+- 수정 인풋 창에서 엔터 버튼 누르면 입력된 값으로 해당 할 일이 수정되고 렌더링 된다.
+- 수정 인풋 창 외의 화면을 클릭하면 입력된 값으로 해당 할 일이 수정되고 렌더링 된다.
+- 수정 인풋 창에서 esc 버튼을 누르면 해당 할 일이 렌더링 된다.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 할 일 아이템의 엑스 버튼을 누르면 해당 할 일이 삭제된다.
+- 완료 상태인 할 일이 1개 이상이면 Clear Completed 버튼을 노출한다.
+- Clear Completed 버튼을 누르면 완료 상태인 할 일들이 삭제된다.
