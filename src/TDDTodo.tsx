@@ -1,3 +1,5 @@
+import TodoItem from "./components/TodoItem";
+
 function TDDTodo() {
   return (
     <section className="todoapp">
@@ -10,6 +12,13 @@ function TDDTodo() {
             autoFocus={true}
           />
         </header>
+        <section className="main">
+          <input id="toggle-all" className="toggle-all" type="checkbox" />
+          <label htmlFor="toggle-all">Mark all as complete</label>
+          <ul className="todo-list">
+            <TodoItem />
+          </ul>
+        </section>
       </div>
     </section>
   );
