@@ -1,4 +1,13 @@
-function TodoItem() {
+interface Todo {
+  id: number;
+  todo: string;
+}
+
+interface Todos {
+  todos?: Todo[];
+}
+
+function TodoItem({ todos }: Todos) {
   return (
     <li>
       <div className="view">
