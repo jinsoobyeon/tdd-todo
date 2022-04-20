@@ -1,17 +1,34 @@
 import { useState, ChangeEvent, KeyboardEvent } from "react";
 import TodoItem from "./components/TodoItem";
 
+export interface Todos {
+  id: number;
+  todo: string;
+}
+
 function TDDTodo() {
   const [todo, setTodo] = useState<string>("");
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<Todos[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTodo(event.target.value);
   };
 
-  const handleEnterDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleEnterPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      setTodos([...todos, todo]);
+      setTodos([
+        ...todos,
+        { id: Math.random() * 100000000000000000, todo: todo },
+      ]);
+
+      window.localStorage.setItem(
+        "todos",
+        JSON.stringify([
+          ...todos,
+          { id: Math.random() * 100000000000000000, todo: todo },
+        ])
+      );
+
       setTodo("");
     }
   };
@@ -27,7 +44,7 @@ function TDDTodo() {
             autoFocus={true}
             value={todo}
             onChange={handleChange}
-            onKeyDown={handleEnterDown}
+            onKeyPress={handleEnterPress}
           />
         </header>
         <section className="main">
