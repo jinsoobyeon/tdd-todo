@@ -8,7 +8,7 @@ interface TodoList {
 function TodoItem({ todos }: TodoList) {
   return (
     <React.Fragment>
-      {todos.map((todo) => (
+      {todos?.map((todo) => (
         <li key={todo.id}>
           <div className="view">
             <input className="toggle" type="checkbox" />

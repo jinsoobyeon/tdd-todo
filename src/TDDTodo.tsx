@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import TodoItem from "./components/TodoItem";
 
 export interface Todos {
@@ -16,22 +16,28 @@ function TDDTodo() {
 
   const handleEnterPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      setTodos([
-        ...todos,
-        { id: Math.random() * 100000000000000000, todo: todo },
-      ]);
-
-      window.localStorage.setItem(
-        "todos",
-        JSON.stringify([
-          ...todos,
-          { id: Math.random() * 100000000000000000, todo: todo },
-        ])
-      );
-
+      todos
+        ? window.localStorage.setItem(
+            "todos",
+            JSON.stringify([
+              ...todos,
+              { id: Math.random() * 100000000000000000, todo: todo },
+            ])
+          )
+        : window.localStorage.setItem(
+            "todos",
+            JSON.stringify([
+              { id: Math.random() * 100000000000000000, todo: todo },
+            ])
+          );
+      setTodos(JSON.parse(String(window.localStorage.getItem("todos"))));
       setTodo("");
     }
   };
+
+  useEffect(() => {
+    setTodos(JSON.parse(String(window.localStorage.getItem("todos"))));
+  }, []);
 
   return (
     <section className="todoapp">
