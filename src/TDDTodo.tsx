@@ -21,13 +21,19 @@ function TDDTodo() {
             "todos",
             JSON.stringify([
               ...todos,
-              { id: Math.random() * 100000000000000000, todo: todo },
+              {
+                id: Math.random() * 100000000000000000,
+                todo: todo.trim(),
+              },
             ])
           )
         : window.localStorage.setItem(
             "todos",
             JSON.stringify([
-              { id: Math.random() * 100000000000000000, todo: todo },
+              {
+                id: Math.random() * 100000000000000000,
+                todo: todo.trim(),
+              },
             ])
           );
       setTodos(JSON.parse(String(window.localStorage.getItem("todos"))));
