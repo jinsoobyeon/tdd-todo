@@ -5,12 +5,12 @@ interface TodoList {
   todos: Todos[];
 }
 
-const handleDoubleClick = (event: any) => {
-  event.target.closest("li").className = "editing";
-  event.target.closest("li").querySelector(".edit").focus();
-};
-
 function TodoItem({ todos }: TodoList) {
+  const handleDoubleClick = (event: any) => {
+    event.target.closest("li").className = "editing";
+    event.target.closest("li").querySelector(".edit").focus();
+  };
+
   return (
     <Fragment>
       {todos?.map((todo) => (

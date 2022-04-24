@@ -16,9 +16,9 @@ describe("CRUD todo", () => {
     fireEvent.change(input, { target: { value: "할 일" } });
     fireEvent.keyPress(input, { charCode: 13 });
 
-    expect(input).toHaveFocus();
     expect(window.localStorage.getItem("todos")).toMatch("할 일");
     expect(input).toHaveValue("");
+    expect(input).toHaveFocus();
     expect(container).toHaveTextContent("할 일");
   });
 
@@ -29,5 +29,10 @@ describe("CRUD todo", () => {
     fireEvent.doubleClick(li[0]);
 
     expect(edit).toHaveFocus();
+
+    fireEvent.change(edit, { target: { value: "투 두" } });
+    fireEvent.keyPress(edit, { charCode: 13 });
+
+    expect(window.localStorage.getItem("todos")).toMatch("투 두");
   });
 });
