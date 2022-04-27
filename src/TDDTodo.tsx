@@ -10,6 +10,10 @@ function TDDTodo() {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todos[]>([]);
 
+  const renderTodos = () => {
+    setTodos(JSON.parse(String(window.localStorage.getItem("todos"))));
+  };
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTodo(event.target.value);
   };
@@ -36,13 +40,13 @@ function TDDTodo() {
               },
             ])
           );
-      setTodos(JSON.parse(String(window.localStorage.getItem("todos"))));
+      renderTodos();
       setTodo("");
     }
   };
 
   useEffect(() => {
-    setTodos(JSON.parse(String(window.localStorage.getItem("todos"))));
+    renderTodos();
   }, []);
 
   return (
@@ -63,7 +67,7 @@ function TDDTodo() {
           <input id="toggle-all" className="toggle-all" type="checkbox" />
           <label htmlFor="toggle-all">Mark all as complete</label>
           <ul className="todo-list">
-            <TodoItem todos={todos} />
+            <TodoItem todos={todos} renderTodos={renderTodos} />
           </ul>
         </section>
       </div>

@@ -1,11 +1,12 @@
-import { Fragment, useState, ChangeEvent, KeyboardEvent } from "react";
+import { Fragment, useState, ChangeEvent } from "react";
 import { Todos } from "../TDDTodo";
 
 interface TodoList {
   todos: Todos[];
+  renderTodos: Function;
 }
 
-function TodoItem({ todos }: TodoList) {
+function TodoItem({ todos, renderTodos }: TodoList) {
   const [editTodo, setEditTodo] = useState<string>("");
 
   const handleDoubleClick = (event: any) => {
@@ -18,10 +19,7 @@ function TodoItem({ todos }: TodoList) {
     setEditTodo(event.target.value);
   };
 
-  const editEnterPres = (
-    event: KeyboardEvent<HTMLInputElement>,
-    id: number
-  ) => {
+  const editEnterPres = (event: any, id: number) => {
     if (event.key === "Enter") {
       window.localStorage.setItem(
         "todos",
@@ -34,6 +32,8 @@ function TodoItem({ todos }: TodoList) {
           })
         )
       );
+      renderTodos();
+      event.target.closest("li").className = "";
     }
   };
 
@@ -51,6 +51,7 @@ function TodoItem({ todos }: TodoList) {
             value={editTodo || ""}
             onChange={editChange}
             onKeyPress={(event) => editEnterPres(event, todo.id)}
+            data-testid="edit"
           />
         </li>
       ))}

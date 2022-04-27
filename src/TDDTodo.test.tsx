@@ -20,4 +20,19 @@ describe("CRUD todo", () => {
     expect(input).toHaveFocus();
     expect(container).toHaveTextContent("할 일");
   });
+
+  it("update todo", () => {
+    const { container } = render(<TDDTodo />);
+    const li = screen.getAllByRole("listitem");
+    const edit = screen.getByTestId("edit");
+    fireEvent.doubleClick(li[0]);
+
+    expect(edit).toHaveFocus();
+
+    fireEvent.change(edit, { target: { value: "투 두" } });
+    fireEvent.keyPress(edit, { charCode: 13 });
+
+    expect(window.localStorage.getItem("todos")).toMatch("투 두");
+    expect(container).toHaveTextContent("투 두");
+  });
 });
