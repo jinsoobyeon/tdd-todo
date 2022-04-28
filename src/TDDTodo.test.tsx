@@ -34,5 +34,11 @@ describe("CRUD todo", () => {
 
     expect(window.localStorage.getItem("todos")).toMatch("투 두");
     expect(container).toHaveTextContent("투 두");
+
+    fireEvent.change(edit, { target: { value: "오늘 할 일" } });
+    fireEvent.mouseDown(container);
+
+    expect(window.localStorage.getItem("todos")).toMatch("오늘 할 일");
+    expect(container).toHaveTextContent("오늘 할 일");
   });
 });
